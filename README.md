@@ -1,4 +1,6 @@
 # gaunt-sloth-assistant.github.io
-Website of Gaunt Sloth
 
+This is a Website repo of Gaunt Sloth Assistant.
+
+The repository of assistant itself can be found at:
 https://github.com/andruhon/gaunt-sloth-assistant
