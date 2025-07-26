@@ -1,0 +1,546 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>CONFIGURATION | Gaunt Sloth Assistant</title><meta name="description" content="Documentation for Gaunt Sloth Assistant"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><a href="../index.html" class="title">Gaunt Sloth Assistant</a><div id="tsd-toolbar-links"><a href="https://github.com/Galvanized-Pukeko/gaunt-sloth-assistant">GitHub</a></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/><ul role="listbox" id="tsd-search-results"></ul><div id="tsd-search-status" aria-live="polite" aria-atomic="true"><div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><ul class="tsd-breadcrumb" aria-label="Breadcrumb"><li><a href="" aria-current="page">CONFIGURATION</a></li></ul></div><div class="tsd-panel tsd-typography"><h1 id="configuration" class="tsd-anchor-link">Configuration<a href="#configuration" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h1><p>Populate <code>.gsloth.guidelines.md</code> with your project details and quality requirements.
+A proper preamble is paramount for good inference.
+Check <a href="../media/.gsloth.guidelines.md">.gsloth.guidelines.md</a> for example.</p>
+<p>Your project should have the following files in order for gsloth to function:</p>
+<ul>
+<li>Configuration file (one of):
+<ul>
+<li><code>.gsloth.config.js</code> (JavaScript module)</li>
+<li><code>.gsloth.config.json</code> (JSON file)</li>
+<li><code>.gsloth.config.mjs</code> (JavaScript module with explicit module extension)</li>
+</ul>
+</li>
+<li><code>.gsloth.guidelines.md</code></li>
+</ul>
+<blockquote>
+<p>Gaunt Sloth currently only functions from the directory which has one of the configuration files and <code>.gsloth.guidelines.md</code>. Configuration files can be located in the project root or in the <code>.gsloth/.gsloth-settings/</code> directory.</p>
+<p>You can also specify a path to a configuration file directly using the <code>-c</code> or <code>--config</code> global flag, for example <code>gth -c /path/to/your/config.json ask &quot;who are you?&quot;</code></p>
+</blockquote>
+<h2 id="using-gsloth-directory" class="tsd-anchor-link">Using .gsloth Directory<a href="#using-gsloth-directory" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2><p>For a tidier project structure, you can create a <code>.gsloth</code> directory in your project root. When this directory exists, gsloth will:</p>
+<ol>
+<li>Write all output files (like responses from commands) to the <code>.gsloth</code> directory instead of the project root</li>
+<li>Look for configuration files in <code>.gsloth/.gsloth-settings/</code> subdirectory</li>
+</ol>
+<p>Example directory structure when using the <code>.gsloth</code> directory:</p>
+<pre><code><span class="hl-1">.</span><span class="hl-7">gsloth</span><span class="hl-1">/.</span><span class="hl-7">gsloth</span><span class="hl-1">-</span><span class="hl-7">settings</span><span class="hl-1">/.</span><span class="hl-7">gsloth</span><span class="hl-1">-</span><span class="hl-7">config</span><span class="hl-1">.</span><span class="hl-7">json</span><br/><span class="hl-1">.</span><span class="hl-7">gsloth</span><span class="hl-1">/.</span><span class="hl-7">gsloth</span><span class="hl-1">-</span><span class="hl-7">settings</span><span class="hl-1">/.</span><span class="hl-7">gsloth</span><span class="hl-1">.</span><span class="hl-7">guidelines</span><span class="hl-1">.</span><span class="hl-7">md</span><br/><span class="hl-1">.</span><span class="hl-7">gsloth</span><span class="hl-1">/.</span><span class="hl-7">gsloth</span><span class="hl-1">-</span><span class="hl-7">settings</span><span class="hl-1">/.</span><span class="hl-7">gsloth</span><span class="hl-1">.</span><span class="hl-7">review</span><span class="hl-1">.</span><span class="hl-7">md</span><br/><span class="hl-1">.</span><span class="hl-7">gsloth</span><span class="hl-1">/</span><span class="hl-7">gth_2025</span><span class="hl-1">-</span><span class="hl-3">05</span><span class="hl-1">-</span><span class="hl-3">18_09</span><span class="hl-1">-</span><span class="hl-3">34</span><span class="hl-1">-38</span><span class="hl-7">_ASK</span><span class="hl-1">.</span><span class="hl-7">md</span><br/><span class="hl-1">.</span><span class="hl-7">gsloth</span><span class="hl-1">/</span><span class="hl-7">gth_2025</span><span class="hl-1">-</span><span class="hl-3">05</span><span class="hl-1">-</span><span class="hl-3">18_22</span><span class="hl-1">-</span><span class="hl-3">09</span><span class="hl-1">-00</span><span class="hl-7">_PR</span><span class="hl-1">-22.</span><span class="hl-7">md</span>
+</code><button>Copy</button></pre>
+
+<p>If the <code>.gsloth</code> directory doesn't exist, gsloth will continue writing all files to the project root directory as it did previously.</p>
+<p><strong>Note:</strong> When initializing a project with an existing <code>.gsloth</code> directory, the configuration files will be created in the <code>.gsloth/.gsloth-settings</code> directory automatically. There is no automated migration for existing configurations - if you create a <code>.gsloth</code> directory after initialization, you'll need to manually move your configuration files into the <code>.gsloth/.gsloth-settings</code> directory.</p>
+<h2 id="configuration-object" class="tsd-anchor-link">Configuration Object<a href="#configuration-object" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2><p>It is always worth checking sourcecode in <a href="../modules/config.html">config.ts</a> for more insightful information.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>llm</code></td>
+<td>Required</td>
+<td>-</td>
+<td>An object configuring LLM. In JS config could be actual instance of LangChainJS <a href="https://v03.api.js.langchain.com/classes/_langchain_core.language_models_chat_models.BaseChatModel.html">BaseChatModel</a>, allowing to use LLMs which do not have a preset.</td>
+</tr>
+<tr>
+<td><code>llm.type</code></td>
+<td>Required (when using JSON config)</td>
+<td>-</td>
+<td>LLM type or provider. Options currently available are <code>anthropic</code>, <code>groq</code>, <code>deepseek</code>, <code>openai</code>, <code>google-genai</code>, <code>vertexai</code> and <code>xai</code>. For providers using OpenAI format (like Inception), use <code>openai</code> type with custom configuration. To use other models supported by LangChainJS, please use JavaScript config.</td>
+</tr>
+<tr>
+<td><code>llm.model</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Particular LLM model string (Check in your provider documentation).</td>
+</tr>
+<tr>
+<td><code>llm.apiKey</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>API key for the LLM provider. You can either use this parameter or use environment variable.</td>
+</tr>
+<tr>
+<td><code>contentProvider</code></td>
+<td>Optional</td>
+<td><code>file</code></td>
+<td>Default content provider used to get content for review. Options available are <code>github</code>, <code>file</code> and <code>text</code> (<code>text</code> provides text as it is).</td>
+</tr>
+<tr>
+<td><code>requirementsProvider</code></td>
+<td>Optional</td>
+<td><code>file</code></td>
+<td>Default requirements provider used to get requirements for review. Options available are <code>jira</code>, <code>jira-legacy</code>, <code>github</code>, <code>file</code> and <code>text</code>.</td>
+</tr>
+<tr>
+<td><code>projectGuidelines</code></td>
+<td>Optional</td>
+<td><code>.gsloth.guidelines.md</code></td>
+<td>Path to the file containing project guidelines.</td>
+</tr>
+<tr>
+<td><code>projectReviewInstructions</code></td>
+<td>Optional</td>
+<td><code>.gsloth.review.md</code></td>
+<td>Path to the file containing project review instructions.</td>
+</tr>
+<tr>
+<td><code>streamOutput</code></td>
+<td>Optional</td>
+<td><code>true</code></td>
+<td>When set to <code>true</code>, AI responses are streamed to the console in real-time. When <code>false</code>, responses are displayed only after completion.</td>
+</tr>
+<tr>
+<td><code>filesystem</code></td>
+<td>Optional</td>
+<td>See note</td>
+<td>File system access configuration. Options: <code>'all'</code>, <code>'none'</code>, or an array of specific file operation names. Default is an array of read-only operations: <code>['read_file', 'read_multiple_files', 'list_directory', 'directory_tree', 'search_files', 'get_file_info', 'list_allowed_directories']</code>.</td>
+</tr>
+<tr>
+<td><code>commands</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Configuration for specific commands.</td>
+</tr>
+<tr>
+<td><code>commands.pr</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Configuration for the PR command.</td>
+</tr>
+<tr>
+<td><code>commands.pr.contentProvider</code></td>
+<td>Optional</td>
+<td><code>github</code></td>
+<td>Content provider used for PR review (<code>gsloth pr</code>).</td>
+</tr>
+<tr>
+<td><code>commands.pr.requirementsProvider</code></td>
+<td>Optional</td>
+<td><code>github</code></td>
+<td>Requirements provider used for PR review. If not specified, falls back to the global <code>requirementsProvider</code>.</td>
+</tr>
+<tr>
+<td><code>commands.pr.filesystem</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>File system access configuration for PR command. Options: <code>'all'</code>, <code>'none'</code>, or specific file patterns for read-only access.</td>
+</tr>
+<tr>
+<td><code>commands.review</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Configuration for the review command.</td>
+</tr>
+<tr>
+<td><code>commands.review.contentProvider</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Content provider specifically for the review command. If not specified, falls back to the global <code>contentProvider</code>.</td>
+</tr>
+<tr>
+<td><code>commands.review.requirementsProvider</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Requirements provider specifically for the review command. If not specified, falls back to the global <code>requirementsProvider</code>.</td>
+</tr>
+<tr>
+<td><code>commands.review.filesystem</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>File system access configuration for review command. Options: <code>'all'</code>, <code>'none'</code>, or specific file patterns for read-only access.</td>
+</tr>
+<tr>
+<td><code>commands.ask</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Configuration for the ask command.</td>
+</tr>
+<tr>
+<td><code>commands.ask.filesystem</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>File system access configuration for ask command. Options: <code>'all'</code>, <code>'none'</code>, or specific file patterns for read-only access.</td>
+</tr>
+<tr>
+<td><code>commands.chat</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Configuration for the chat command (interactive chat sessions).</td>
+</tr>
+<tr>
+<td><code>commands.chat.filesystem</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>File system access configuration for chat command. Options: <code>'all'</code>, <code>'none'</code>, or specific file patterns for read-only access.</td>
+</tr>
+<tr>
+<td><code>commands.code</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Configuration for the code command (interactive coding sessions with file system access).</td>
+</tr>
+<tr>
+<td><code>commands.code.filesystem</code></td>
+<td>Optional</td>
+<td><code>all</code></td>
+<td>File system access configuration for code command. Options: <code>'all'</code>, <code>'none'</code>, or specific file patterns. Default is <code>'all'</code> for full file system access.</td>
+</tr>
+<tr>
+<td><code>requirementsProviderConfig</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Configuration for requirements providers. Contains provider-specific configurations.</td>
+</tr>
+<tr>
+<td><code>requirementsProviderConfig.jira</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Configuration for the Jira requirements provider (Atlassian REST API v3 with Personal Access Token).</td>
+</tr>
+<tr>
+<td><code>requirementsProviderConfig.jira.username</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Jira username (email). Can also be set via JIRA_USERNAME environment variable.</td>
+</tr>
+<tr>
+<td><code>requirementsProviderConfig.jira.token</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Jira Personal Access Token. Can also be set via JIRA_API_PAT_TOKEN environment variable.</td>
+</tr>
+<tr>
+<td><code>requirementsProviderConfig.jira.cloudId</code></td>
+<td>Required for <code>jira</code></td>
+<td>-</td>
+<td>Atlassian Cloud ID. Can also be set via JIRA_CLOUD_ID environment variable.</td>
+</tr>
+<tr>
+<td><code>requirementsProviderConfig.jira.displayUrl</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Optional URL for displaying Jira issues (e.g., &quot;https://yourcompany.atlassian.net/browse/&quot;).</td>
+</tr>
+<tr>
+<td><code>requirementsProviderConfig.jira-legacy</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Configuration for the Jira Legacy requirements provider (Atlassian REST API v2 with Legacy API Token).</td>
+</tr>
+<tr>
+<td><code>requirementsProviderConfig.jira-legacy.username</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Jira username (email). Can also be set via JIRA_USERNAME environment variable.</td>
+</tr>
+<tr>
+<td><code>requirementsProviderConfig.jira-legacy.token</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Jira Legacy API Token. Can also be set via JIRA_LEGACY_API_TOKEN environment variable.</td>
+</tr>
+<tr>
+<td><code>requirementsProviderConfig.jira-legacy.baseUrl</code></td>
+<td>Required for <code>jira-legacy</code></td>
+<td>-</td>
+<td>Base URL for the Jira API (e.g., &quot;https://yourcompany.atlassian.net/rest/api/2/issue/&quot;).</td>
+</tr>
+<tr>
+<td><code>requirementsProviderConfig.jira-legacy.displayUrl</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Optional URL for displaying Jira issues (e.g., &quot;https://yourcompany.atlassian.net/browse/&quot;).</td>
+</tr>
+<tr>
+<td><code>contentProviderConfig</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Configuration for content providers. Currently, the available content providers (<code>github</code>, <code>file</code>, and <code>text</code>) don't require specific configuration.</td>
+</tr>
+<tr>
+<td><code>tools</code></td>
+<td>Optional (JS config only)</td>
+<td>-</td>
+<td>Array of LangChain tools that can be used by the LLM. This option is only available when using JavaScript configuration, allowing you to extend functionality with custom tools.</td>
+</tr>
+<tr>
+<td><code>mcpServers</code></td>
+<td>Optional</td>
+<td>-</td>
+<td>Configuration for Model Context Protocol (MCP) servers. This allows for enhanced context management.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="config-initialization" class="tsd-anchor-link">Config initialization<a href="#config-initialization" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Configuration can be created with <code>gsloth init [vendor]</code> command.
+Currently, anthropic, groq, deepseek, openai, google-genai, vertexai and xai can be configured with <code>gsloth init [vendor]</code>.
+For providers using OpenAI format (like Inception), use <code>gsloth init openai</code> and then modify the configuration.</p>
+<h3 id="google-genai-ai-studio" class="tsd-anchor-link">Google GenAI (AI Studio)<a href="#google-genai-ai-studio" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-0">cd</span><span class="hl-1"> </span><span class="hl-2">./your-project</span><br/><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1"> </span><span class="hl-2">google-genai</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="google-vertex-ai" class="tsd-anchor-link">Google Vertex AI<a href="#google-vertex-ai" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-0">cd</span><span class="hl-1"> </span><span class="hl-2">./your-project</span><br/><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1"> </span><span class="hl-2">vertexai</span><br/><span class="hl-0">gcloud</span><span class="hl-1"> </span><span class="hl-2">auth</span><span class="hl-1"> </span><span class="hl-2">login</span><br/><span class="hl-0">gcloud</span><span class="hl-1"> </span><span class="hl-2">auth</span><span class="hl-1"> </span><span class="hl-2">application-default</span><span class="hl-1"> </span><span class="hl-2">login</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="anthropic" class="tsd-anchor-link">Anthropic<a href="#anthropic" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-0">cd</span><span class="hl-1"> </span><span class="hl-2">./your-project</span><br/><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1"> </span><span class="hl-2">anthropic</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Make sure you either define <code>ANTHROPIC_API_KEY</code> environment variable or edit your configuration file and set up your key.</p>
+<h3 id="groq" class="tsd-anchor-link">Groq<a href="#groq" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-0">cd</span><span class="hl-1"> </span><span class="hl-2">./your-project</span><br/><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1"> </span><span class="hl-2">groq</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Make sure you either define <code>GROQ_API_KEY</code> environment variable or edit your configuration file and set up your key.</p>
+<h3 id="deepseek" class="tsd-anchor-link">DeepSeek<a href="#deepseek" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-0">cd</span><span class="hl-1"> </span><span class="hl-2">./your-project</span><br/><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1"> </span><span class="hl-2">deepseek</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Make sure you either define <code>DEEPSEEK_API_KEY</code> environment variable or edit your configuration file and set up your key.
+(note this meant to be an API key from deepseek.com, rather than from a distributor like TogetherAI)</p>
+<h3 id="openai" class="tsd-anchor-link">OpenAI<a href="#openai" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-0">cd</span><span class="hl-1"> </span><span class="hl-2">./your-project</span><br/><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1"> </span><span class="hl-2">openai</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Make sure you either define <code>OPENAI_API_KEY</code> environment variable or edit your configuration file and set up your key.</p>
+<h3 id="open-router" class="tsd-anchor-link">Open Router<a href="#open-router" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-0">cd</span><span class="hl-1"> </span><span class="hl-2">./your-project</span><br/><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1"> </span><span class="hl-2">openrouter</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Make sure you either define <code>OPEN_ROUTER_API_KEY</code> environment variable or edit your configuration file and set up your key.</p>
+<h3 id="other-openai-compatible-providers-inception-etc" class="tsd-anchor-link">Other OpenAI-compatible providers (Inception, etc.)<a href="#other-openai-compatible-providers-inception-etc" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><p>For providers that use OpenAI-compatible APIs:</p>
+<pre><code class="bash"><span class="hl-0">cd</span><span class="hl-1"> </span><span class="hl-2">./your-project</span><br/><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1"> </span><span class="hl-2">openai</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Then edit your configuration file to add the custom base URL and API key. For example, for Inception:</p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;openai&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;mercury-coder&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;apiKeyEnvironmentVariable&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;INCEPTION_API_KEY&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;configuration&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;baseURL&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;https://api.inceptionlabs.ai/v1&quot;</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<ul>
+<li>apiKeyEnvironmentVariable property can be used to point to the correct API key environment variable.</li>
+</ul>
+<h3 id="xai" class="tsd-anchor-link">xAI<a href="#xai" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-0">cd</span><span class="hl-1"> </span><span class="hl-2">./your-project</span><br/><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1"> </span><span class="hl-2">xai</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Make sure you either define <code>XAI_API_KEY</code> environment variable or edit your configuration file and set up your key.</p>
+<h2 id="examples-of-configuration-for-different-providers" class="tsd-anchor-link">Examples of configuration for different providers<a href="#examples-of-configuration-for-different-providers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2><h3 id="json-configuration-gslothconfigjson" class="tsd-anchor-link">JSON Configuration (.gsloth.config.json)<a href="#json-configuration-gslothconfigjson" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><p>JSON configuration is simpler but less flexible than JavaScript configuration. It should directly contain the configuration object.</p>
+<p><strong>Example of .gsloth.config.json for Anthropic</strong></p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;anthropic&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;apiKey&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;your-api-key-here&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;claude-3-5-sonnet-20241022&quot;</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>You can use the <code>ANTHROPIC_API_KEY</code> environment variable instead of specifying <code>apiKey</code> in the config.</p>
+<p><strong>Example of .gsloth.config.json for Groq</strong></p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;groq&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;deepseek-r1-distill-llama-70b&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;apiKey&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;your-api-key-here&quot;</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>You can use the <code>GROQ_API_KEY</code> environment variable instead of specifying <code>apiKey</code> in the config.</p>
+<p><strong>Example of .gsloth.config.json for DeepSeek</strong></p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;deepseek&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;deepseek-reasoner&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;apiKey&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;your-api-key-here&quot;</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>You can use the <code>DEEPSEEK_API_KEY</code> environment variable instead of specifying <code>apiKey</code> in the config.</p>
+<p><strong>Example of .gsloth.config.json for OpenAI</strong></p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;openai&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;gpt-4o&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;apiKey&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;your-api-key-here&quot;</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>You can use the <code>OPENAI_API_KEY</code> environment variable instead of specifying <code>apiKey</code> in the config.</p>
+<p><strong>Example of .gsloth.config.json for Inception (OpenAI-compatible)</strong></p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;openai&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;mercury-coder&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;apiKeyEnvironmentVariable&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;INCEPTION_API_KEY&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;configuration&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;baseURL&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;https://api.inceptionlabs.ai/v1&quot;</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>You can use the <code>INCEPTION_API_KEY</code> environment variable as specified in <code>apiKeyEnvironmentVariable</code>.</p>
+<p><strong>Example of .gsloth.config.json for Google GenAI</strong></p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;google-genai&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;gemini-2.5-pro&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;apiKey&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;your-api-key-here&quot;</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>You can use the <code>GOOGLE_API_KEY</code> environment variable instead of specifying <code>apiKey</code> in the config.</p>
+<p><strong>Example of .gsloth.config.json for VertexAI</strong></p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;vertexai&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;gemini-2.5-pro&quot;</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>VertexAI typically uses gcloud authentication; no <code>apiKey</code> is needed in the config.</p>
+<p><strong>Example of .gsloth.config.json for Open Router</strong></p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;openrouter&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;moonshotai/kimi-k2&quot;</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Make sure you either define <code>OPEN_ROUTER_API_KEY</code> environment variable or edit your configuration file and set up your key.
+When changing a model, make sure you're using a model which supports tools.</p>
+<p><strong>Example of .gsloth.config.json for xAI</strong></p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;xai&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;grok-4-0709&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;apiKey&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;your-api-key-here&quot;</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>You can use the <code>XAI_API_KEY</code> environment variable instead of specifying <code>apiKey</code> in the config.</p>
+<h3 id="javascript-configuration" class="tsd-anchor-link">JavaScript Configuration<a href="#javascript-configuration" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><p>(.gsloth.config.js or .gsloth.config.mjs)</p>
+<p>JavaScript configuration provides more flexibility than JSON configuration, allowing you to use dynamic imports and include custom tools.</p>
+<p><strong>Example with Custom Tools</strong></p>
+<pre><code class="javascript"><span class="hl-4">// .gsloth.config.mjs</span><br/><span class="hl-8">import</span><span class="hl-1"> { </span><span class="hl-7">tool</span><span class="hl-1"> } </span><span class="hl-8">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@langchain/core/tools&#39;</span><span class="hl-1">;</span><br/><span class="hl-8">import</span><span class="hl-1"> { </span><span class="hl-7">z</span><span class="hl-1"> } </span><span class="hl-8">from</span><span class="hl-1"> </span><span class="hl-2">&#39;zod&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-9">parrotTool</span><span class="hl-1"> = </span><span class="hl-0">tool</span><span class="hl-1">((</span><span class="hl-7">s</span><span class="hl-1">) </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-7">console</span><span class="hl-1">.</span><span class="hl-0">log</span><span class="hl-1">(</span><span class="hl-7">s</span><span class="hl-1">);</span><br/><span class="hl-1">}, {</span><br/><span class="hl-1">  </span><span class="hl-7">name:</span><span class="hl-1"> </span><span class="hl-2">&#39;parrot_tool&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">description:</span><span class="hl-1"> </span><span class="hl-2">`This tool will simply print the string`</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">schema:</span><span class="hl-1"> </span><span class="hl-7">z</span><span class="hl-1">.</span><span class="hl-0">string</span><span class="hl-1">(),</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-8">export</span><span class="hl-1"> </span><span class="hl-5">async</span><span class="hl-1"> </span><span class="hl-5">function</span><span class="hl-1"> </span><span class="hl-0">configure</span><span class="hl-1">() {</span><br/><span class="hl-1">  </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-9">anthropic</span><span class="hl-1"> = </span><span class="hl-8">await</span><span class="hl-1"> </span><span class="hl-5">import</span><span class="hl-1">(</span><span class="hl-2">&#39;@langchain/google-vertexai&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-8">return</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-7">llm:</span><span class="hl-1"> </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-7">anthropic</span><span class="hl-1">.</span><span class="hl-0">ChatVertexAI</span><span class="hl-1">({</span><br/><span class="hl-1">      </span><span class="hl-7">model:</span><span class="hl-1"> </span><span class="hl-2">&#39;gemini-2.5-pro&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    }),</span><br/><span class="hl-1">    </span><span class="hl-7">tools:</span><span class="hl-1"> [</span><br/><span class="hl-1">      </span><span class="hl-7">parrotTool</span><br/><span class="hl-1">    ]</span><br/><span class="hl-1">  };</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>Example of .gsloth.config.mjs for Anthropic</strong></p>
+<pre><code class="javascript"><span class="hl-8">export</span><span class="hl-1"> </span><span class="hl-5">async</span><span class="hl-1"> </span><span class="hl-5">function</span><span class="hl-1"> </span><span class="hl-0">configure</span><span class="hl-1">() {</span><br/><span class="hl-1">    </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-9">anthropic</span><span class="hl-1"> = </span><span class="hl-8">await</span><span class="hl-1"> </span><span class="hl-5">import</span><span class="hl-1">(</span><span class="hl-2">&#39;@langchain/anthropic&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">    </span><span class="hl-8">return</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-7">llm:</span><span class="hl-1"> </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-7">anthropic</span><span class="hl-1">.</span><span class="hl-0">ChatAnthropic</span><span class="hl-1">({</span><br/><span class="hl-1">            </span><span class="hl-7">apiKey:</span><span class="hl-1"> </span><span class="hl-7">process</span><span class="hl-1">.</span><span class="hl-7">env</span><span class="hl-1">.</span><span class="hl-9">ANTHROPIC_API_KEY</span><span class="hl-1">, </span><span class="hl-4">// Default value, but you can provide the key in many different ways, even as literal</span><br/><span class="hl-1">            </span><span class="hl-7">model:</span><span class="hl-1"> </span><span class="hl-2">&quot;claude-3-5-sonnet-20241022&quot;</span><br/><span class="hl-1">        })</span><br/><span class="hl-1">    };</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>Example of .gsloth.config.mjs for Groq</strong></p>
+<pre><code class="javascript"><span class="hl-8">export</span><span class="hl-1"> </span><span class="hl-5">async</span><span class="hl-1"> </span><span class="hl-5">function</span><span class="hl-1"> </span><span class="hl-0">configure</span><span class="hl-1">() {</span><br/><span class="hl-1">    </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-9">groq</span><span class="hl-1"> = </span><span class="hl-8">await</span><span class="hl-1"> </span><span class="hl-5">import</span><span class="hl-1">(</span><span class="hl-2">&#39;@langchain/groq&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">    </span><span class="hl-8">return</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-7">llm:</span><span class="hl-1"> </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-7">groq</span><span class="hl-1">.</span><span class="hl-0">ChatGroq</span><span class="hl-1">({</span><br/><span class="hl-1">            </span><span class="hl-7">model:</span><span class="hl-1"> </span><span class="hl-2">&quot;deepseek-r1-distill-llama-70b&quot;</span><span class="hl-1">, </span><span class="hl-4">// Check other models available</span><br/><span class="hl-1">            </span><span class="hl-7">apiKey:</span><span class="hl-1"> </span><span class="hl-7">process</span><span class="hl-1">.</span><span class="hl-7">env</span><span class="hl-1">.</span><span class="hl-9">GROQ_API_KEY</span><span class="hl-1">, </span><span class="hl-4">// Default value, but you can provide the key in many different ways, even as literal</span><br/><span class="hl-1">        })</span><br/><span class="hl-1">    };</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>Example of .gsloth.config.mjs for DeepSeek</strong></p>
+<pre><code class="javascript"><span class="hl-8">export</span><span class="hl-1"> </span><span class="hl-5">async</span><span class="hl-1"> </span><span class="hl-5">function</span><span class="hl-1"> </span><span class="hl-0">configure</span><span class="hl-1">() {</span><br/><span class="hl-1">    </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-9">deepseek</span><span class="hl-1"> = </span><span class="hl-8">await</span><span class="hl-1"> </span><span class="hl-5">import</span><span class="hl-1">(</span><span class="hl-2">&#39;@langchain/deepseek&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">    </span><span class="hl-8">return</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-7">llm:</span><span class="hl-1"> </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-7">deepseek</span><span class="hl-1">.</span><span class="hl-0">ChatDeepSeek</span><span class="hl-1">({</span><br/><span class="hl-1">            </span><span class="hl-7">model:</span><span class="hl-1"> </span><span class="hl-2">&#39;deepseek-reasoner&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-7">apiKey:</span><span class="hl-1"> </span><span class="hl-7">process</span><span class="hl-1">.</span><span class="hl-7">env</span><span class="hl-1">.</span><span class="hl-9">DEEPSEEK_API_KEY</span><span class="hl-1">, </span><span class="hl-4">// Default value, but you can provide the key in many different ways, even as literal</span><br/><span class="hl-1">        })</span><br/><span class="hl-1">    };</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>Example of .gsloth.config.mjs for OpenAI</strong></p>
+<pre><code class="javascript"><span class="hl-8">export</span><span class="hl-1"> </span><span class="hl-5">async</span><span class="hl-1"> </span><span class="hl-5">function</span><span class="hl-1"> </span><span class="hl-0">configure</span><span class="hl-1">() {</span><br/><span class="hl-1">    </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-9">openai</span><span class="hl-1"> = </span><span class="hl-8">await</span><span class="hl-1"> </span><span class="hl-5">import</span><span class="hl-1">(</span><span class="hl-2">&#39;@langchain/openai&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">    </span><span class="hl-8">return</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-7">llm:</span><span class="hl-1"> </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-7">openai</span><span class="hl-1">.</span><span class="hl-0">ChatOpenAI</span><span class="hl-1">({</span><br/><span class="hl-1">            </span><span class="hl-7">model:</span><span class="hl-1"> </span><span class="hl-2">&#39;gpt-4o&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-7">apiKey:</span><span class="hl-1"> </span><span class="hl-7">process</span><span class="hl-1">.</span><span class="hl-7">env</span><span class="hl-1">.</span><span class="hl-9">OPENAI_API_KEY</span><span class="hl-1">, </span><span class="hl-4">// Default value, but you can provide the key in many different ways, even as literal</span><br/><span class="hl-1">        })</span><br/><span class="hl-1">    };</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>Example of .gsloth.config.mjs for Inception (OpenAI-compatible)</strong></p>
+<pre><code class="javascript"><span class="hl-8">export</span><span class="hl-1"> </span><span class="hl-5">async</span><span class="hl-1"> </span><span class="hl-5">function</span><span class="hl-1"> </span><span class="hl-0">configure</span><span class="hl-1">() {</span><br/><span class="hl-1">    </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-9">openai</span><span class="hl-1"> = </span><span class="hl-8">await</span><span class="hl-1"> </span><span class="hl-5">import</span><span class="hl-1">(</span><span class="hl-2">&#39;@langchain/openai&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">    </span><span class="hl-8">return</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-7">llm:</span><span class="hl-1"> </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-7">openai</span><span class="hl-1">.</span><span class="hl-0">ChatOpenAI</span><span class="hl-1">({</span><br/><span class="hl-1">            </span><span class="hl-7">model:</span><span class="hl-1"> </span><span class="hl-2">&#39;mercury-coder&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-7">apiKey:</span><span class="hl-1"> </span><span class="hl-7">process</span><span class="hl-1">.</span><span class="hl-7">env</span><span class="hl-1">.</span><span class="hl-9">INCEPTION_API_KEY</span><span class="hl-1">, </span><span class="hl-4">// Default value, but you can provide the key in many different ways, even as literal</span><br/><span class="hl-1">            </span><span class="hl-7">configuration:</span><span class="hl-1"> {</span><br/><span class="hl-1">                </span><span class="hl-7">baseURL:</span><span class="hl-1"> </span><span class="hl-2">&#39;https://api.inceptionlabs.ai/v1&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            },</span><br/><span class="hl-1">        })</span><br/><span class="hl-1">    };</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>Example of .gsloth.config.mjs for Google GenAI</strong></p>
+<pre><code class="javascript"><span class="hl-8">export</span><span class="hl-1"> </span><span class="hl-5">async</span><span class="hl-1"> </span><span class="hl-5">function</span><span class="hl-1"> </span><span class="hl-0">configure</span><span class="hl-1">() {</span><br/><span class="hl-1">  </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-9">googleGenai</span><span class="hl-1"> = </span><span class="hl-8">await</span><span class="hl-1"> </span><span class="hl-5">import</span><span class="hl-1">(</span><span class="hl-2">&#39;@langchain/google-genai&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-8">return</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-7">llm:</span><span class="hl-1"> </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-7">googleGenai</span><span class="hl-1">.</span><span class="hl-0">ChatGoogleGenerativeAI</span><span class="hl-1">({</span><br/><span class="hl-1">      </span><span class="hl-7">model:</span><span class="hl-1"> </span><span class="hl-2">&#39;gemini-2.5-pro&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-7">apiKey:</span><span class="hl-1"> </span><span class="hl-7">process</span><span class="hl-1">.</span><span class="hl-7">env</span><span class="hl-1">.</span><span class="hl-9">GOOGLE_API_KEY</span><span class="hl-1">, </span><span class="hl-4">// Default value, but you can provide the key in many different ways, even as literal</span><br/><span class="hl-1">    })</span><br/><span class="hl-1">  };</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>Example of .gsloth.config.mjs for VertexAI</strong><br>
+VertexAI usually needs <code>gcloud auth application-default login</code>
+(or both <code>gcloud auth login</code> and <code>gcloud auth application-default login</code>) and does not need any separate API keys.</p>
+<pre><code class="javascript"><span class="hl-8">export</span><span class="hl-1"> </span><span class="hl-5">async</span><span class="hl-1"> </span><span class="hl-5">function</span><span class="hl-1"> </span><span class="hl-0">configure</span><span class="hl-1">() {</span><br/><span class="hl-1">    </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-9">vertexAi</span><span class="hl-1"> = </span><span class="hl-8">await</span><span class="hl-1"> </span><span class="hl-5">import</span><span class="hl-1">(</span><span class="hl-2">&#39;@langchain/google-vertexai&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">    </span><span class="hl-8">return</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-7">llm:</span><span class="hl-1"> </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-7">vertexAi</span><span class="hl-1">.</span><span class="hl-0">ChatVertexAI</span><span class="hl-1">({</span><br/><span class="hl-1">            </span><span class="hl-7">model:</span><span class="hl-1"> </span><span class="hl-2">&quot;gemini-2.5-pro&quot;</span><span class="hl-1">, </span><span class="hl-4">// Consider checking for latest recommended model versions</span><br/><span class="hl-1">            </span><span class="hl-4">// API Key from AI Studio should also work</span><br/><span class="hl-1">            </span><span class="hl-4">//// Other parameters might be relevant depending on Vertex AI API updates.</span><br/><span class="hl-1">            </span><span class="hl-4">//// The project is not in the interface, but it is in documentation and it seems to work.</span><br/><span class="hl-1">            </span><span class="hl-4">// project: &#39;your-cool-google-cloud-project&#39;,</span><br/><span class="hl-1">        })</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>Example of .gsloth.config.mjs for xAI</strong></p>
+<pre><code class="javascript"><span class="hl-8">export</span><span class="hl-1"> </span><span class="hl-5">async</span><span class="hl-1"> </span><span class="hl-5">function</span><span class="hl-1"> </span><span class="hl-0">configure</span><span class="hl-1">() {</span><br/><span class="hl-1">    </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-9">xai</span><span class="hl-1"> = </span><span class="hl-8">await</span><span class="hl-1"> </span><span class="hl-5">import</span><span class="hl-1">(</span><span class="hl-2">&#39;@langchain/xai&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">    </span><span class="hl-8">return</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-7">llm:</span><span class="hl-1"> </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-7">xai</span><span class="hl-1">.</span><span class="hl-0">ChatXAI</span><span class="hl-1">({</span><br/><span class="hl-1">            </span><span class="hl-7">model:</span><span class="hl-1"> </span><span class="hl-2">&#39;grok-4-0709&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">            </span><span class="hl-7">apiKey:</span><span class="hl-1"> </span><span class="hl-7">process</span><span class="hl-1">.</span><span class="hl-7">env</span><span class="hl-1">.</span><span class="hl-9">XAI_API_KEY</span><span class="hl-1">, </span><span class="hl-4">// Default value, but you can provide the key in many different ways, even as literal</span><br/><span class="hl-1">        })</span><br/><span class="hl-1">    };</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="using-other-ai-providers" class="tsd-anchor-link">Using other AI providers<a href="#using-other-ai-providers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2><p>The configure function should simply return instance of langchain <a href="https://v03.api.js.langchain.com/classes/_langchain_core.language_models_chat_models.BaseChatModel.html">chat model</a>.
+See <a href="https://js.langchain.com/docs/tutorials/llm_chain/">Langchain documentation</a> for more details.</p>
+<h2 id="integration-with-github-workflows--actions" class="tsd-anchor-link">Integration with GitHub Workflows / Actions<a href="#integration-with-github-workflows--actions" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Example GitHub workflows integration can be found in <a href=".github/workflows/review.yml">.github/workflows/review.yml</a>
+this example workflow performs AI review on any pushes to Pull Request, resulting in a comment left by,
+GitHub actions bot.</p>
+<h2 id="model-context-protocol-mcp" class="tsd-anchor-link">Model Context Protocol (MCP)<a href="#model-context-protocol-mcp" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Gaunt Sloth Assistant supports the Model Context Protocol (MCP), which provides enhanced context management. You can connect to various MCP servers, including those requiring OAuth authentication.</p>
+<h3 id="oauth-enabled-mcp-servers" class="tsd-anchor-link">OAuth-enabled MCP Servers<a href="#oauth-enabled-mcp-servers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Gaunt Sloth now supports OAuth authentication for MCP servers. This has been tested with the Atlassian Jira MCP server.</p>
+<h4 id="example-atlassian-jira-mcp-server" class="tsd-anchor-link">Example: Atlassian Jira MCP Server<a href="#example-atlassian-jira-mcp-server" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>To connect to the Atlassian Jira MCP server using OAuth, add the following to your <code>.gsloth.config.json</code>:</p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;vertexai&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;gemini-2.5-pro&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;temperature&quot;</span><span class="hl-1">: </span><span class="hl-3">0</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;mcpServers&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;jira&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;url&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;https://mcp.atlassian.com/v1/sse&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;authProvider&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;OAuth&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;transport&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;sse&quot;</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>OAuth Authentication Flow:</strong></p>
+<ol>
+<li>When you first use a command that requires the MCP server, your browser will open automatically</li>
+<li>Complete the OAuth authentication in your browser</li>
+<li>The authentication tokens are stored securely in <code>~/.gsloth/.gsloth-auth/</code></li>
+<li>Future sessions will use the stored tokens automatically</li>
+</ol>
+<p><strong>Token Storage:</strong></p>
+<ul>
+<li>OAuth tokens are stored in JSON files under <code>~/.gsloth/.gsloth-auth/</code></li>
+<li>Each server's tokens are stored in a separate file named after the server URL</li>
+<li>The storage location is cross-platform (Windows, macOS, Linux)</li>
+</ul>
+<h3 id="mcp-stdio-server-configuration" class="tsd-anchor-link">MCP stdio Server Configuration<a href="#mcp-stdio-server-configuration" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><p>To configure local MCP server, add the <code>mcpServers</code> section to your configuration file,
+for example, configuration for reference sequential thinking MCP follows:</p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;vertexai&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;gemini-2.5-pro&quot;</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;mcpServers&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;sequential-thinking&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;transport&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;stdio&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;command&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;npx&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;args&quot;</span><span class="hl-1">: [</span><br/><span class="hl-1">        </span><span class="hl-2">&quot;-y&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">        </span><span class="hl-2">&quot;@modelcontextprotocol/server-sequential-thinking&quot;</span><br/><span class="hl-1">      ]</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>This configuration launches the MCP filesystem server using npx, providing the LLM with access to the specified directory. The server uses stdio for communication with the LLM.</p>
+<h2 id="content-providers" class="tsd-anchor-link">Content providers<a href="#content-providers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2><h3 id="github-issues" class="tsd-anchor-link">GitHub Issues<a href="#github-issues" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Gaunt Sloth supports GitHub issues as a requirements provider using the GitHub CLI. This integration is simple to use and requires minimal setup.</p>
+<p><strong>Prerequisites:</strong></p>
+<ol>
+<li><strong>GitHub CLI</strong>: Make sure the official <a href="https://cli.github.com/">GitHub CLI (gh)</a> is installed and authenticated</li>
+<li><strong>Repository Access</strong>: Ensure you have access to the repository's issues</li>
+</ol>
+<p><strong>Usage:</strong></p>
+<p>The command syntax is <code>gsloth pr &lt;prId&gt; [githubIssueId]</code>. For example:</p>
+<pre><code class="bash"><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">pr</span><span class="hl-1"> </span><span class="hl-3">42</span><span class="hl-1"> </span><span class="hl-3">23</span>
+</code><button type="button">Copy</button></pre>
+
+<p>This will review PR #42 and include GitHub issue #23 as requirements.</p>
+<p>To explicitly specify the GitHub issue provider:</p>
+<pre><code class="bash"><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">pr</span><span class="hl-1"> </span><span class="hl-3">42</span><span class="hl-1"> </span><span class="hl-3">23</span><span class="hl-1"> </span><span class="hl-5">-p</span><span class="hl-1"> </span><span class="hl-2">github</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>Configuration:</strong></p>
+<p>To set GitHub as your default requirements provider, add this to your configuration file:</p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;vertexai&quot;</span><span class="hl-1">, </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;gemini-2.5-pro&quot;</span><span class="hl-1">},</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;commands&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;pr&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;requirementsProvider&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;github&quot;</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="jira" class="tsd-anchor-link">JIRA<a href="#jira" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Gaunt Sloth supports three methods to integrate with JIRA:</p>
+<h4 id="atlassian-mcp" class="tsd-anchor-link">Atlassian MCP<a href="#atlassian-mcp" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>MCP can be used in <code>chat</code> and <code>code</code> commands.</p>
+<p>Gaunt Sloth has OAuth client for MCP and is confirmed to work with public Jira MCP.</p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;vertexai&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;gemini-2.5-pro&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;temperature&quot;</span><span class="hl-1">: </span><span class="hl-3">0</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;mcpServers&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;jira&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;url&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;https://mcp.atlassian.com/v1/sse&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;authProvider&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;OAuth&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;transport&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;sse&quot;</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<h4 id="1-modern-jira-rest-api-scoped-token" class="tsd-anchor-link">1. Modern Jira REST API (Scoped Token)<a href="#1-modern-jira-rest-api-scoped-token" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Jira API is used with <code>pr</code> and <code>review</code> commands.</p>
+<p>This method uses the Atlassian REST API v3 with a Personal Access Token (PAT). It requires your Atlassian Cloud ID.</p>
+<p><strong>Prerequisites:</strong></p>
+<ol>
+<li>
+<p><strong>Cloud ID</strong>: You can find your Cloud ID by visiting <code>https://yourcompany.atlassian.net/_edge/tenant_info</code> while authenticated.</p>
+</li>
+<li>
+<p><strong>Personal Access Token (PAT)</strong>: Create a PAT with the appropriate permissions from <code>Atlassian Account Settings -&gt; Security -&gt; Create and manage API tokens -&gt; [Create API token with scopes]</code>.</p>
+<ul>
+<li>For issue access, the recommended permission is <code>read:jira-work</code> (classic)</li>
+<li>Alternatively granular access would require: <code>read:issue-meta:jira</code>, <code>read:issue-security-level:jira</code>, <code>read:issue.vote:jira</code>, <code>read:issue.changelog:jira</code>, <code>read:avatar:jira</code>, <code>read:issue:jira</code>, <code>read:status:jira</code>, <code>read:user:jira</code>, <code>read:field-configuration:jira</code></li>
+</ul>
+</li>
+</ol>
+<p>Refer to JIRA API documentation for more details <a href="https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-rest-api-3-issue-issueidorkey-get">https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-rest-api-3-issue-issueidorkey-get</a></p>
+<p><strong>Environment Variables Support:</strong></p>
+<p>For better security, you can set the JIRA username, token, and cloud ID using environment variables instead of placing them in the configuration file:</p>
+<ul>
+<li><code>JIRA_USERNAME</code>: Your JIRA username (e.g., <code>user@yourcompany.com</code>).</li>
+<li><code>JIRA_API_PAT_TOKEN</code>: Your JIRA Personal Access Token with scopes.</li>
+<li><code>JIRA_CLOUD_ID</code>: Your Atlassian Cloud ID.</li>
+</ul>
+<p>If these environment variables are set, they will take precedence over the values in the configuration file.</p>
+<p>JSON:</p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;vertexai&quot;</span><span class="hl-1">, </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;gemini-2.5-pro&quot;</span><span class="hl-1">},</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;requirementsProvider&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;jira&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;requirementsProviderConfig&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;jira&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;username&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;username@yourcompany.com&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;token&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;YOUR_JIRA_PAT_TOKEN&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;cloudId&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;YOUR_ATLASSIAN_CLOUD_ID&quot;</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Optionally displayUrl can be defined to have a clickable link in the output:</p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;vertexai&quot;</span><span class="hl-1">, </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;gemini-2.5-pro&quot;</span><span class="hl-1">},</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;requirementsProvider&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;jira&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;requirementsProviderConfig&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;jira&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;displayUrl&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;https://yourcompany.atlassian.net/browse/&quot;</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>JavaScript:</p>
+<pre><code class="javascript"><span class="hl-8">export</span><span class="hl-1"> </span><span class="hl-5">async</span><span class="hl-1"> </span><span class="hl-5">function</span><span class="hl-1"> </span><span class="hl-0">configure</span><span class="hl-1">() {</span><br/><span class="hl-1">  </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-9">vertexAi</span><span class="hl-1"> = </span><span class="hl-8">await</span><span class="hl-1"> </span><span class="hl-5">import</span><span class="hl-1">(</span><span class="hl-2">&#39;@langchain/google-vertexai&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-8">return</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-7">llm:</span><span class="hl-1"> </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-7">vertexAi</span><span class="hl-1">.</span><span class="hl-0">ChatVertexAI</span><span class="hl-1">({</span><br/><span class="hl-1">      </span><span class="hl-7">model:</span><span class="hl-1"> </span><span class="hl-2">&quot;gemini-2.5-pro&quot;</span><br/><span class="hl-1">    }),</span><br/><span class="hl-1">    </span><span class="hl-7">requirementsProvider:</span><span class="hl-1"> </span><span class="hl-2">&#39;jira&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-7">requirementsProviderConfig:</span><span class="hl-1"> {</span><br/><span class="hl-1">      </span><span class="hl-2">&#39;jira&#39;</span><span class="hl-7">:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-7">username:</span><span class="hl-1"> </span><span class="hl-2">&#39;username@yourcompany.com&#39;</span><span class="hl-1">, </span><span class="hl-4">// Your Jira username/email</span><br/><span class="hl-1">        </span><span class="hl-7">token:</span><span class="hl-1"> </span><span class="hl-2">&#39;YOUR_JIRA_PAT_TOKEN&#39;</span><span class="hl-1">,        </span><span class="hl-4">// Your Personal Access Token</span><br/><span class="hl-1">        </span><span class="hl-7">cloudId:</span><span class="hl-1"> </span><span class="hl-2">&#39;YOUR_ATLASSIAN_CLOUD_ID&#39;</span><span class="hl-1">    </span><span class="hl-4">// Your Atlassian Cloud ID</span><br/><span class="hl-1">      }</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<h4 id="2-legacy-jira-rest-api-unscoped-token" class="tsd-anchor-link">2. Legacy Jira REST API (Unscoped Token)<a href="#2-legacy-jira-rest-api-unscoped-token" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><p>Jira API is used with <code>pr</code> and <code>review</code> commands.</p>
+<p>This uses the Unscoped API token (Aka Legacy API token) method with REST API v2.</p>
+<p>A legacy token can be acquired from <code>Atlassian Account Settings -&gt; Security -&gt; Create and manage API tokens -&gt; [Create API token without scopes]</code>.</p>
+<p>Example configuration setting up JIRA integration using a legacy API token for both <code>review</code> and <code>pr</code> commands.
+Make sure you use your actual company domain in <code>baseUrl</code> and your personal legacy <code>token</code>.</p>
+<p><strong>Environment Variables Support:</strong></p>
+<p>For better security, you can set the JIRA username and token using environment variables instead of placing them in the configuration file:</p>
+<ul>
+<li><code>JIRA_USERNAME</code>: Your JIRA username (e.g., <code>user@yourcompany.com</code>).</li>
+<li><code>JIRA_LEGACY_API_TOKEN</code>: Your JIRA legacy API token.</li>
+</ul>
+<p>If these environment variables are set, they will take precedence over the values in the configuration file.</p>
+<p>JSON:</p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;vertexai&quot;</span><span class="hl-1">, </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;gemini-2.5-pro&quot;</span><span class="hl-1">},</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;requirementsProvider&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;jira-legacy&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;requirementsProviderConfig&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;jira-legacy&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;username&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;username@yourcompany.com&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;token&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;YOUR_JIRA_LEGACY_TOKEN&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;baseUrl&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;https://yourcompany.atlassian.net/rest/api/2/issue/&quot;</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>JavaScript:</p>
+<pre><code class="javascript"><span class="hl-8">export</span><span class="hl-1"> </span><span class="hl-5">async</span><span class="hl-1"> </span><span class="hl-5">function</span><span class="hl-1"> </span><span class="hl-0">configure</span><span class="hl-1">() {</span><br/><span class="hl-1">  </span><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-9">vertexAi</span><span class="hl-1"> = </span><span class="hl-8">await</span><span class="hl-1"> </span><span class="hl-5">import</span><span class="hl-1">(</span><span class="hl-2">&#39;@langchain/google-vertexai&#39;</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-8">return</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-7">llm:</span><span class="hl-1"> </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-7">vertexAi</span><span class="hl-1">.</span><span class="hl-0">ChatVertexAI</span><span class="hl-1">({</span><br/><span class="hl-1">      </span><span class="hl-7">model:</span><span class="hl-1"> </span><span class="hl-2">&quot;gemini-2.5-pro&quot;</span><br/><span class="hl-1">    }),</span><br/><span class="hl-1">    </span><span class="hl-7">requirementsProvider:</span><span class="hl-1"> </span><span class="hl-2">&#39;jira-legacy&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-7">requirementsProviderConfig:</span><span class="hl-1"> {</span><br/><span class="hl-1">      </span><span class="hl-2">&#39;jira-legacy&#39;</span><span class="hl-7">:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-7">username:</span><span class="hl-1"> </span><span class="hl-2">&#39;username@yourcompany.com&#39;</span><span class="hl-1">, </span><span class="hl-4">// Your Jira username/email</span><br/><span class="hl-1">        </span><span class="hl-7">token:</span><span class="hl-1"> </span><span class="hl-2">&#39;YOUR_JIRA_LEGACY_TOKEN&#39;</span><span class="hl-1">,     </span><span class="hl-4">// Replace with your real Jira API token</span><br/><span class="hl-1">        </span><span class="hl-7">baseUrl:</span><span class="hl-1"> </span><span class="hl-2">&#39;https://yourcompany.atlassian.net/rest/api/2/issue/&#39;</span><span class="hl-1">  </span><span class="hl-4">// Your Jira instance base URL</span><br/><span class="hl-1">      }</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="development-tools-configuration" class="tsd-anchor-link">Development Tools Configuration<a href="#development-tools-configuration" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2><p>The <code>code</code> command can be configured with development tools via <code>commands.code.devTools</code>. These tools allow the AI to run build, tests, lint, and single tests using the specified commands.</p>
+<p>The tools are defined in <code>src/tools/GthDevToolkit.ts</code> and include:</p>
+<ul>
+<li><strong>run_tests</strong>: Executes the full test suite.</li>
+<li><strong>run_single_test</strong>: Runs a single test file. The test path must be relative.</li>
+<li><strong>run_lint</strong>: Runs the linter, potentially with auto-fix.</li>
+<li><strong>run_build</strong>: Builds the project.</li>
+</ul>
+<p>These tools execute the configured shell commands and capture their output.</p>
+<p>Example configuration including dev tools (from .gsloth.config.json):</p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;xai&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;grok-4-0709&quot;</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;commands&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;code&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;filesystem&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;all&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;devTools&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">        </span><span class="hl-6">&quot;run_build&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;npm build&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">        </span><span class="hl-6">&quot;run_tests&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;npm test&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">        </span><span class="hl-6">&quot;run_lint&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;npm run lint-n-fix&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">        </span><span class="hl-6">&quot;run_single_test&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;npm test&quot;</span><br/><span class="hl-1">      }</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Note: For <code>run_single_test</code>, the command can include a placeholder like <code>${testPath}</code> for the test file path. p
+Security validations are in place to prevent path traversal or injection.</p>
+<h2 id="server-tools-configuration" class="tsd-anchor-link">Server Tools Configuration<a href="#server-tools-configuration" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Some AI providers provide integrated server tools, such as web search.</p>
+<p><strong>.gsloth.config.json for OpenAI Web Search</strong></p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;openai&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;gpt-4o&quot;</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;tools&quot;</span><span class="hl-1">: [</span><br/><span class="hl-1">    { </span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;web_search_preview&quot;</span><span class="hl-1"> }</span><br/><span class="hl-1">  ]</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>.gsloth.config.json for Anthropic Web Search</strong></p>
+<pre><code class="json"><span class="hl-1">{</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;anthropic&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;claude-sonnet-4-20250514&quot;</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">  </span><span class="hl-6">&quot;tools&quot;</span><span class="hl-1">: [</span><br/><span class="hl-1">    {</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;web_search_20250305&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;name&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;web_search&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-6">&quot;max_uses&quot;</span><span class="hl-1">: </span><span class="hl-3">10</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  ]</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h3>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#configuration"><span>Configuration</span></a><ul><li><a href="#using-gsloth-directory"><span>Using .gsloth <wbr/>Directory</span></a></li><li><a href="#configuration-object"><span>Configuration <wbr/>Object</span></a></li><li><a href="#config-initialization"><span>Config initialization</span></a></li><li><ul><li><a href="#google-genai-ai-studio"><span>Google <wbr/>Gen<wbr/>AI (<wbr/>AI <wbr/>Studio)</span></a></li><li><a href="#google-vertex-ai"><span>Google <wbr/>Vertex <wbr/>AI</span></a></li><li><a href="#anthropic"><span>Anthropic</span></a></li><li><a href="#groq"><span>Groq</span></a></li><li><a href="#deepseek"><span>Deep<wbr/>Seek</span></a></li><li><a href="#openai"><span>Open<wbr/>AI</span></a></li><li><a href="#open-router"><span>Open <wbr/>Router</span></a></li><li><a href="#other-openai-compatible-providers-inception-etc"><span>Other <wbr/>Open<wbr/>AI-<wbr/>compatible providers (<wbr/>Inception, etc.)</span></a></li><li><a href="#xai"><span>x<wbr/>AI</span></a></li></ul></li><li><a href="#examples-of-configuration-for-different-providers"><span>Examples of configuration for different providers</span></a></li><li><ul><li><a href="#json-configuration-gslothconfigjson"><span>JSON <wbr/>Configuration (.gsloth.config.json)</span></a></li><li><a href="#javascript-configuration"><span>Java<wbr/>Script <wbr/>Configuration</span></a></li></ul></li><li><a href="#using-other-ai-providers"><span>Using other <wbr/>AI providers</span></a></li><li><a href="#integration-with-github-workflows--actions"><span>Integration with <wbr/>Git<wbr/>Hub <wbr/>Workflows / <wbr/>Actions</span></a></li><li><a href="#model-context-protocol-mcp"><span>Model <wbr/>Context <wbr/>Protocol (<wbr/>MCP)</span></a></li><li><ul><li><a href="#oauth-enabled-mcp-servers"><span>O<wbr/>Auth-<wbr/>enabled <wbr/>MCP <wbr/>Servers</span></a></li><li><ul><li><a href="#example-atlassian-jira-mcp-server"><span>Example: <wbr/>Atlassian <wbr/>Jira <wbr/>MCP <wbr/>Server</span></a></li></ul></li><li><a href="#mcp-stdio-server-configuration"><span>MCP stdio <wbr/>Server <wbr/>Configuration</span></a></li></ul></li><li><a href="#content-providers"><span>Content providers</span></a></li><li><ul><li><a href="#github-issues"><span>Git<wbr/>Hub <wbr/>Issues</span></a></li><li><a href="#jira"><span>JIRA</span></a></li><li><ul><li><a href="#atlassian-mcp"><span>Atlassian <wbr/>MCP</span></a></li><li><a href="#1-modern-jira-rest-api-scoped-token"><span>1. <wbr/>Modern <wbr/>Jira <wbr/>REST <wbr/>API (<wbr/>Scoped <wbr/>Token)</span></a></li><li><a href="#2-legacy-jira-rest-api-unscoped-token"><span>2. <wbr/>Legacy <wbr/>Jira <wbr/>REST <wbr/>API (<wbr/>Unscoped <wbr/>Token)</span></a></li></ul></li></ul></li><li><a href="#development-tools-configuration"><span>Development <wbr/>Tools <wbr/>Configuration</span></a></li><li><a href="#server-tools-configuration"><span>Server <wbr/>Tools <wbr/>Configuration</span></a></li></ul></div></details></div><div class="site-menu"><nav id="tsd-sidebar-links" class="tsd-navigation"><a href="https://github.com/Galvanized-Pukeko/gaunt-sloth-assistant" class="tsd-nav-link">GitHub</a></nav><nav class="tsd-navigation"><a href="../modules.html">Gaunt Sloth Assistant</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>

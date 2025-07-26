@@ -1,0 +1,179 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="./"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>Gaunt Sloth Assistant</title><meta name="description" content="Documentation for Gaunt Sloth Assistant"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script><script async src="assets/hierarchy.js" id="tsd-hierarchy-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><a href="index.html" class="title">Gaunt Sloth Assistant</a><div id="tsd-toolbar-links"><a href="https://github.com/Galvanized-Pukeko/gaunt-sloth-assistant">GitHub</a></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/><ul role="listbox" id="tsd-search-results"></ul><div id="tsd-search-status" aria-live="polite" aria-atomic="true"><div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h1>Gaunt Sloth Assistant</h1></div><div class="tsd-panel tsd-typography"><h1 id="gaunt-sloth-assistant" class="tsd-anchor-link">Gaunt Sloth Assistant<a href="#gaunt-sloth-assistant" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><p><a href="https://github.com/andruhon/gaunt-sloth-assistant/actions/workflows/unit-tests.yml"><img src="https://github.com/andruhon/gaunt-sloth-assistant/actions/workflows/unit-tests.yml/badge.svg?event=push" alt="Tests and Lint"></a> <a href="https://github.com/andruhon/gaunt-sloth-assistant/actions/workflows/integration-tests.yml"><img src="https://github.com/andruhon/gaunt-sloth-assistant/actions/workflows/integration-tests.yml/badge.svg?event=push" alt="Integration Tests"></a></p>
+<p>Gaunt Sloth Assistant is a lightweight <strong>command line AI assistant</strong>
+built with TypeScript (JavaScript) and distributed via NPM with minimum dependencies.</p>
+<p><img src="media/gaunt-sloth-logo.png" alt="GSloth Banner"></p>
+<p>Based on <a href="https://github.com/langchain-ai/langchainjs">LangChain.js</a></p>
+<h2 id="why" class="tsd-anchor-link">Why?<a href="#why" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>There are many Open Source command line AI assistants available, such as Aider and Goose;
+there are great non-open source options such as Claude Code.</p>
+<p>Gaunt Sloth does not intend to be your &quot;Daily Driver&quot; and is not aiming to replace your Cursor.
+What it promises is that it is small, extendable, cross-platform and can itself be a dependency in your project.</p>
+<p>The GSloth was initially built as a code review tool, fetching PR contents and Jira contents before feeding them to
+the LLM, but we ourselves found many more use cases which we initially did not anticipate; for example,
+we may have it as a dependency in an MCP project, allowing us to quickly spin it up to simulate or test some use cases.</p>
+<p>The promise of Gaunt Sloth:</p>
+<ul>
+<li><strong>Minimum dependencies</strong>. Ideally, we aim to only have CommanderJS and some packages from LangChainJS and LangGraphJS.</li>
+<li><strong>Extensibility</strong>. Feel free to write some JS and create your Tool, Provider or connect to the MCP server of your choice.</li>
+<li><strong>No vendor lock-in</strong>. Just BYO API keys.</li>
+<li><strong>Easy installation via NPM</strong>.</li>
+<li><strong>All prompts are editable</strong> via markdown files.</li>
+<li><strong>No UI</strong>. Command Line only, with intent to be used as a dependency, potentially in your build pipeline.
+Of course, you can use Gaunt Sloth as a dependency and hook your own UI.</li>
+</ul>
+<h2 id="what-gsloth-does" class="tsd-anchor-link">What GSloth does:<a href="#what-gsloth-does" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li>Reviews code;
+<ul>
+<li>Suggests bug fixes;</li>
+<li>Explains provided code</li>
+</ul>
+</li>
+<li>Reviews Diffs provided with pipe (|);
+<ul>
+<li>You can ask GSloth to review your own code before committing (<code>git --no-pager diff | gsloth review</code>).</li>
+</ul>
+</li>
+<li>Reviews Pull Requests (PRs) (<code>gsloth pr 42</code>);
+<ul>
+<li>Fetches descriptions (requirements) from Github issue or Jira (<code>gsloth pr 42 12</code>);;</li>
+</ul>
+</li>
+<li>Answers questions about provided code;</li>
+<li>Writes code;</li>
+<li>Connects to MCP server (including remote MCP with OAuth);</li>
+<li>Saves all responses in .md file in the project directory;</li>
+<li>Anything else you need, when combined with other command line tools.</li>
+</ul>
+<h3 id="to-make-gsloth-work-you-need-an-api-key-from-some-ai-provider-such-as" class="tsd-anchor-link">To make GSloth work, you need an <strong>API key</strong> from some AI provider, such as:<a href="#to-make-gsloth-work-you-need-an-api-key-from-some-ai-provider-such-as" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li>OpenRouter</li>
+<li>Groq;</li>
+<li>DeepSeek;</li>
+<li>Google AI Studio and Google Vertex AI;</li>
+<li>Anthropic;</li>
+<li>OpenAI (and other providers using OpenAI format, such as Inception);</li>
+<li>Ollama with JS config (some of the models, see https://github.com/andruhon/gaunt-sloth-assistant/discussions/107)</li>
+<li>xAI;</li>
+</ul>
+<p><code>*</code> Any other provider supported by LangChain.JS should also work with <a href="documents/CONFIGURATION.html#javascript-configuration">JS config</a>.</p>
+<h2 id="commands-overview" class="tsd-anchor-link">Commands Overview<a href="#commands-overview" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p><code>gth</code> and <code>gsloth</code> commands are used interchangeably, both <code>gsloth pr 42</code> and <code>gth pr 42</code> do the same thing.</p>
+<p>For detailed information about all commands, see <a href="documents/COMMANDS.html">docs/COMMANDS.md</a>.</p>
+<h3 id="available-commands" class="tsd-anchor-link">Available Commands:<a href="#available-commands" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li><strong><code>init</code></strong> - Initialize Gaunt Sloth in your project with a specific AI provider</li>
+<li><strong><code>pr</code></strong> - ⚠️ This feature requires GitHub CLI to be installed. Review pull requests with optional requirement integration (GitHub issues or Jira).</li>
+<li><strong><code>review</code></strong> - Review any diff or content from various sources</li>
+<li><strong><code>ask</code></strong> - Ask questions about code or programming topics</li>
+<li><strong><code>chat</code></strong> - Start an interactive chat session</li>
+<li><strong><code>code</code></strong> - Write code interactively with full project context</li>
+</ul>
+<h3 id="quick-examples" class="tsd-anchor-link">Quick Examples:<a href="#quick-examples" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p><strong>Initialize project:</strong></p>
+<pre><code class="bash"><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1"> </span><span class="hl-2">anthropic</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>Review PR with requirements:</strong></p>
+<pre><code class="bash"><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">pr</span><span class="hl-1"> </span><span class="hl-3">42</span><span class="hl-1"> </span><span class="hl-3">23</span><span class="hl-1">  </span><span class="hl-4"># Review PR #42 with GitHub issue #23</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>Review local changes:</strong></p>
+<pre><code class="bash"><span class="hl-0">git</span><span class="hl-1"> </span><span class="hl-5">--no-pager</span><span class="hl-1"> </span><span class="hl-2">diff</span><span class="hl-1"> | </span><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">review</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>Review changes between a specific tag and the HEAD:</strong></p>
+<pre><code class="bash"><span class="hl-0">git</span><span class="hl-1"> </span><span class="hl-5">--no-pager</span><span class="hl-1"> </span><span class="hl-2">diff</span><span class="hl-1"> </span><span class="hl-2">v0.8.3..HEAD</span><span class="hl-1"> | </span><span class="hl-0">gth</span><span class="hl-1"> </span><span class="hl-2">review</span>
+</code><button type="button">Copy</button></pre>
+
+<p>**Review diff between head and previous release and head using a specific requirements provider (GitHub issue 38), not the one which is configured by default:</p>
+<pre><code class="bash"><span class="hl-0">git</span><span class="hl-1"> </span><span class="hl-5">--no-pager</span><span class="hl-1"> </span><span class="hl-2">diff</span><span class="hl-1"> </span><span class="hl-2">v0.8.10</span><span class="hl-1"> </span><span class="hl-2">HEAD</span><span class="hl-1"> | </span><span class="hl-0">npx</span><span class="hl-1"> </span><span class="hl-2">gth</span><span class="hl-1"> </span><span class="hl-2">review</span><span class="hl-1"> </span><span class="hl-5">--requirements-provider</span><span class="hl-1"> </span><span class="hl-2">github</span><span class="hl-1"> </span><span class="hl-5">-r</span><span class="hl-1"> </span><span class="hl-3">38</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>Ask questions:</strong></p>
+<pre><code class="bash"><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">ask</span><span class="hl-1"> </span><span class="hl-2">&quot;What does this function do?&quot;</span><span class="hl-1"> </span><span class="hl-5">-f</span><span class="hl-1"> </span><span class="hl-2">utils.js</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>Write release notes:</strong></p>
+<pre><code class="bash"><span class="hl-0">git</span><span class="hl-1"> </span><span class="hl-5">--no-pager</span><span class="hl-1"> </span><span class="hl-2">diff</span><span class="hl-1"> </span><span class="hl-2">v0.8.3..HEAD</span><span class="hl-1"> | </span><span class="hl-0">gth</span><span class="hl-1"> </span><span class="hl-2">ask</span><span class="hl-1"> </span><span class="hl-2">&quot;inspect existing release notes in assets/release-notes/v0_8_2.md; inspect provided diff and write release notes to v0_8_4.md&quot;</span>
+</code><button type="button">Copy</button></pre>
+
+<p>To write this to filesystem, you'd need to add filesystem access to the <em>ask</em> command in <code>.gsloth.config.json</code>.</p>
+<pre><code class="json"><span class="hl-1">{</span><span class="hl-6">&quot;llm&quot;</span><span class="hl-1">: {</span><span class="hl-6">&quot;type&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;vertexai&quot;</span><span class="hl-1">, </span><span class="hl-6">&quot;model&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;gemini-2.5-pro&quot;</span><span class="hl-1">}, </span><span class="hl-6">&quot;commands&quot;</span><span class="hl-1">: {</span><span class="hl-6">&quot;ask&quot;</span><span class="hl-1">: {</span><span class="hl-6">&quot;filesystem&quot;</span><span class="hl-1">: </span><span class="hl-2">&quot;all&quot;</span><span class="hl-1">}}}</span>
+</code><button type="button">Copy</button></pre>
+
+<p>*You can improve this significantly by modifying project guidelines in <code>.gsloth.guidelines.md</code> or maybe with keeping instructions in file and feeding it in with <code>-f</code>.</p>
+<p><strong>Interactive sessions:</strong></p>
+<pre><code class="bash"><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">chat</span><span class="hl-1">  </span><span class="hl-4"># Start chat session</span><br/><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">code</span><span class="hl-1">  </span><span class="hl-4"># Start coding session</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="installation" class="tsd-anchor-link">Installation<a href="#installation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Tested with Node 22 LTS.</p>
+<h3 id="npm" class="tsd-anchor-link">NPM<a href="#npm" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">install</span><span class="hl-1"> </span><span class="hl-2">gaunt-sloth-assistant</span><span class="hl-1"> </span><span class="hl-5">-g</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="configuration" class="tsd-anchor-link">Configuration<a href="#configuration" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><blockquote>
+<p>Gaunt Sloth currently only functions from the directory which has a configuration file (<code>.gsloth.config.js</code>, <code>.gsloth.config.json</code>, or <code>.gsloth.config.mjs</code>) and <code>.gsloth.guidelines.md</code>. Configuration files can be located in the project root or in the <code>.gsloth/.gsloth-settings/</code> directory.</p>
+<p>You can also specify a path to a configuration file directly using the <code>-c</code> or <code>--config</code> global flag, for example <code>gth -c /path/to/your/config.json ask &quot;who are you?&quot;</code>
+Note, however, is that project guidelines are going to be used from current directory if they exist and simple install dir prompt is going to be used if nothing found.</p>
+</blockquote>
+<p>Configuration can be created with <code>gsloth init [vendor]</code> command.
+Currently, openrouter, anthropic, groq, deepseek, openai, google-genai, vertexai and xai can be configured with <code>gsloth init [vendor]</code>.
+For OpenAI-compatible providers like Inception, use <code>gsloth init openai</code> and modify the configuration.</p>
+<p>More detailed information on configuration can be found in <a href="documents/CONFIGURATION.html">CONFIGURATION.md</a></p>
+<h3 id="google-genai-ai-studio" class="tsd-anchor-link">Google GenAI (AI Studio)<a href="#google-genai-ai-studio" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-0">cd</span><span class="hl-1"> </span><span class="hl-2">./your-project</span><br/><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1"> </span><span class="hl-2">google-genai</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Make sure you either define <code>GOOGLE_API_KEY</code> environment variable or edit your configuration file and set up your key.
+It is recommended to obtain API key from Google AI Studio official website rather than from a reseller.</p>
+<h3 id="google-vertex-ai" class="tsd-anchor-link">Google Vertex AI<a href="#google-vertex-ai" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-0">cd</span><span class="hl-1"> </span><span class="hl-2">./your-project</span><br/><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1"> </span><span class="hl-2">vertexai</span><br/><span class="hl-0">gcloud</span><span class="hl-1"> </span><span class="hl-2">auth</span><span class="hl-1"> </span><span class="hl-2">login</span><br/><span class="hl-0">gcloud</span><span class="hl-1"> </span><span class="hl-2">auth</span><span class="hl-1"> </span><span class="hl-2">application-default</span><span class="hl-1"> </span><span class="hl-2">login</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="open-router" class="tsd-anchor-link">Open Router<a href="#open-router" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-0">cd</span><span class="hl-1"> </span><span class="hl-2">./your-project</span><br/><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1"> </span><span class="hl-2">openrouter</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Make sure you either define <code>OPEN_ROUTER_API_KEY</code> environment variable or edit your configuration file and set up your key.</p>
+<h3 id="anthropic" class="tsd-anchor-link">Anthropic<a href="#anthropic" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-0">cd</span><span class="hl-1"> </span><span class="hl-2">./your-project</span><br/><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1"> </span><span class="hl-2">anthropic</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Make sure you either define <code>ANTHROPIC_API_KEY</code> environment variable or edit your configuration file and set up your key.</p>
+<h3 id="groq" class="tsd-anchor-link">Groq<a href="#groq" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-0">cd</span><span class="hl-1"> </span><span class="hl-2">./your-project</span><br/><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1"> </span><span class="hl-2">groq</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Make sure you either define <code>GROQ_API_KEY</code> environment variable or edit your configuration file and set up your key.</p>
+<h3 id="deepseek" class="tsd-anchor-link">DeepSeek<a href="#deepseek" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-0">cd</span><span class="hl-1"> </span><span class="hl-2">./your-project</span><br/><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1"> </span><span class="hl-2">deepseek</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Make sure you either define <code>DEEPSEEK_API_KEY</code> environment variable or edit your configuration file and set up your key.
+It is recommended to obtain API key from DeepSeek official website rather than from a reseller.</p>
+<h3 id="openai" class="tsd-anchor-link">OpenAI<a href="#openai" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-0">cd</span><span class="hl-1"> </span><span class="hl-2">./your-project</span><br/><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1"> </span><span class="hl-2">openai</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Make sure you either define <code>OPENAI_API_KEY</code> environment variable or edit your configuration file and set up your key.</p>
+<h3 id="openai-compatible-providers-inception-etc" class="tsd-anchor-link">OpenAI-compatible providers (Inception, etc.)<a href="#openai-compatible-providers-inception-etc" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>For providers using OpenAI-compatible APIs:</p>
+<pre><code class="bash"><span class="hl-0">cd</span><span class="hl-1"> </span><span class="hl-2">./your-project</span><br/><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1"> </span><span class="hl-2">openai</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Then edit your configuration to add custom base URL and API key. See <a href="documents/CONFIGURATION.html">CONFIGURATION.md</a> for examples.</p>
+<h3 id="xai" class="tsd-anchor-link">xAI<a href="#xai" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-0">cd</span><span class="hl-1"> </span><span class="hl-2">./your-project</span><br/><span class="hl-0">gsloth</span><span class="hl-1"> </span><span class="hl-2">init</span><span class="hl-1"> </span><span class="hl-2">xai</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Make sure you either define <code>XAI_API_KEY</code> environment variable or edit your configuration file and set up your key.</p>
+<h3 id="other-ai-providers" class="tsd-anchor-link">Other AI providers<a href="#other-ai-providers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Any other AI provider supported by Langchain.js can be configured with js <a href="documents/CONFIGURATION.html">Config</a>.
+For example, Ollama can be set up with JS config (some of the models, see https://github.com/andruhon/gaunt-sloth-assistant/discussions/107)</p>
+<h2 id="integration-with-github-workflows--actions" class="tsd-anchor-link">Integration with GitHub Workflows / Actions<a href="#integration-with-github-workflows--actions" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Example GitHub workflows integration can be found in <a href="media/review.yml">.github/workflows/review.yml;</a>
+this example workflow performs AI review on any pushes to Pull Request, resulting in a comment left by,
+GitHub actions bot.</p>
+<h2 id="mcp-model-context-protocol-servers" class="tsd-anchor-link">MCP (Model Context Protocol) Servers<a href="#mcp-model-context-protocol-servers" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Gaunt Sloth supports connecting to MCP servers, including those requiring OAuth authentication.</p>
+<p>This has been tested with the Atlassian Jira MCP server.<br>
+See the <a href="documents/CONFIGURATION.html#model-context-protocol-mcp">MCP configuration section</a> for detailed setup instructions.</p>
+<h2 id="uninstall" class="tsd-anchor-link">Uninstall<a href="#uninstall" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Uninstall global NPM package:</p>
+<pre><code class="bash"><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-2">uninstall</span><span class="hl-1"> </span><span class="hl-5">-g</span><span class="hl-1"> </span><span class="hl-2">gaunt-sloth-assistant</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Remove global config (if any)</p>
+<pre><code class="bash"><span class="hl-0">rm</span><span class="hl-1"> </span><span class="hl-5">-r</span><span class="hl-1"> </span><span class="hl-2">~/.gsloth</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Remove configs from project (if necessary)</p>
+<pre><code class="bash"><span class="hl-0">rm</span><span class="hl-1"> </span><span class="hl-5">-r</span><span class="hl-1"> </span><span class="hl-2">./.gsloth</span><span class="hl-5">*</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="contributing" class="tsd-anchor-link">Contributing<a href="#contributing" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Contributors are needed! Feel free to create a PR.
+If you are not sure where to start, look for issues with a &quot;good first issue&quot; label.</p>
+<h2 id="building-from-repo" class="tsd-anchor-link">Building from repo<a href="#building-from-repo" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>See <a href="documents/DEVELOPMENT.html">DEVELOPMENT.md</a></p>
+<h2 id="license" class="tsd-anchor-link">License<a href="#license" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>License is <a href="https://opensource.org/license/mit">MIT</a>. See <a href="media/LICENSE">LICENSE</a></p>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#gaunt-sloth-assistant"><span>Gaunt <wbr/>Sloth <wbr/>Assistant</span></a><ul><li><a href="#why"><span>Why?</span></a></li><li><a href="#what-gsloth-does"><span>What <wbr/>G<wbr/>Sloth does:</span></a></li><li><ul><li><a href="#to-make-gsloth-work-you-need-an-api-key-from-some-ai-provider-such-as"><span>To make <wbr/>G<wbr/>Sloth work, you need an <wbr/>API key from some <wbr/>AI provider, such as:</span></a></li></ul></li><li><a href="#commands-overview"><span>Commands <wbr/>Overview</span></a></li><li><ul><li><a href="#available-commands"><span>Available <wbr/>Commands:</span></a></li><li><a href="#quick-examples"><span>Quick <wbr/>Examples:</span></a></li></ul></li><li><a href="#installation"><span>Installation</span></a></li><li><ul><li><a href="#npm"><span>NPM</span></a></li></ul></li><li><a href="#configuration"><span>Configuration</span></a></li><li><ul><li><a href="#google-genai-ai-studio"><span>Google <wbr/>Gen<wbr/>AI (<wbr/>AI <wbr/>Studio)</span></a></li><li><a href="#google-vertex-ai"><span>Google <wbr/>Vertex <wbr/>AI</span></a></li><li><a href="#open-router"><span>Open <wbr/>Router</span></a></li><li><a href="#anthropic"><span>Anthropic</span></a></li><li><a href="#groq"><span>Groq</span></a></li><li><a href="#deepseek"><span>Deep<wbr/>Seek</span></a></li><li><a href="#openai"><span>Open<wbr/>AI</span></a></li><li><a href="#openai-compatible-providers-inception-etc"><span>Open<wbr/>AI-<wbr/>compatible providers (<wbr/>Inception, etc.)</span></a></li><li><a href="#xai"><span>x<wbr/>AI</span></a></li><li><a href="#other-ai-providers"><span>Other <wbr/>AI providers</span></a></li></ul></li><li><a href="#integration-with-github-workflows--actions"><span>Integration with <wbr/>Git<wbr/>Hub <wbr/>Workflows / <wbr/>Actions</span></a></li><li><a href="#mcp-model-context-protocol-servers"><span>MCP (<wbr/>Model <wbr/>Context <wbr/>Protocol) <wbr/>Servers</span></a></li><li><a href="#uninstall"><span>Uninstall</span></a></li><li><a href="#contributing"><span>Contributing</span></a></li><li><a href="#building-from-repo"><span>Building from repo</span></a></li><li><a href="#license"><span>License</span></a></li></ul></div></details></div><div class="site-menu"><nav id="tsd-sidebar-links" class="tsd-navigation"><a href="https://github.com/Galvanized-Pukeko/gaunt-sloth-assistant" class="tsd-nav-link">GitHub</a></nav><nav class="tsd-navigation"><a href="modules.html">Gaunt Sloth Assistant</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>
