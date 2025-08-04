@@ -7,6 +7,8 @@ https://github.com/andruhon/gaunt-sloth-assistant
 
 ## Development server
 
+Run server locally:
+
 ```bash
 npm run serve
 ```
