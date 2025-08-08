@@ -135,6 +135,14 @@
                 display: block;
                 border-bottom: 0.04rem solid var(--purple-69);
             }
+            h3 {
+                margin-top: 4rem;
+                display: block;
+                border-bottom: 0.04rem solid var(--purple-69);
+            }
+            .header-with-subtitle {
+                margin-bottom: 0;
+            }
             p {
                 font-size: 1.15rem;
                 margin-bottom: 18px;
@@ -144,7 +152,15 @@
             a {
                 color: var(--color-link-idle);
             }
-
+            .link-with-icon {
+                display: inline-flex;
+                gap: 5px;
+                align-items: center;
+            }
+            .icon-in-text {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
             .subtitle {
                 font-weight: 300;
                 margin-top: 0;
@@ -522,6 +538,86 @@
 
                 The GSloth was initially built as a code review tool, fetching PR contents and Jira contents before feeding them to the LLM, but we ourselves found many more use cases which we initially did not anticipate; for example, we may have it as a dependency in an MCP project, allowing us to quickly spin it up to simulate or test some use cases.
             </p>
+
+            <div class="link-with-icon">
+                <a href="https://github.com/Galvanized-Pukeko/gaunt-sloth-assistant/tree/main?tab=readme-ov-file#commands-overview" target="_blank">Commands Overview
+                </a>
+                <svg class="icon-in-text" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g filter="url(#filter0_d_50_12)">
+                    <path d="M22 24H8V10H15V8H7.28571C6.57563 8 6 8.57563 6 9.28571V24.7143L6.00628 24.8461C6.07228 25.4943 6.62013 26 7.28571 26H22.7143L22.8461 25.9937C23.451 25.9321 23.9321 25.451 23.9937 24.8461L24 24.7143V17H22V24Z" fill="#F5E1FE"/>
+                    <path d="M25.9802 14.75H24.0408V9.375L15 18.5L13.5 17L22.6052 8H17.2302V6H22.6052H24.2927H25.1365V6C25.6025 6 25.9802 6.37776 25.9802 6.84375V6.84375V7.6875V9.375V14.75Z" fill="#F5E1FE"/>
+                    </g>
+                    <defs>
+                    <filter id="filter0_d_50_12" x="0" y="0" width="32" height="32" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset/>
+                    <feGaussianBlur stdDeviation="2"/>
+                    <feComposite in2="hardAlpha" operator="out"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_50_12"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_50_12" result="shape"/>
+                    </filter>
+                    </defs>
+                    </svg>
+
+            </div>
+
+            <h3 class="header-with-subtitle">To make GSloth work,</h3>
+            <p class="subtitle">you need an API key from some AI provider, such as:</p>
+            <ul class="features">
+                <li>OpenRouter</li>
+                <li>Groq</li>
+                <li>DeepSeek</li>
+                <li>Google AI Studio and Google Vertex AI</li>
+                <li>Anthropic</li>
+                <li>OpenAI (and other providers using OpenAI format, such as Inception)</li>
+                <li>Ollama with JS config (some of the models, see
+                    <span class="link-with-icon">
+                    <a href="https://github.com/Galvanized-Pukeko/gaunt-sloth-assistant/discussions/107" target="_blank">#107
+                    </a><svg class="icon-in-text" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g filter="url(#filter0_d_50_12)">
+                        <path d="M22 24H8V10H15V8H7.28571C6.57563 8 6 8.57563 6 9.28571V24.7143L6.00628 24.8461C6.07228 25.4943 6.62013 26 7.28571 26H22.7143L22.8461 25.9937C23.451 25.9321 23.9321 25.451 23.9937 24.8461L24 24.7143V17H22V24Z" fill="#F5E1FE"/>
+                        <path d="M25.9802 14.75H24.0408V9.375L15 18.5L13.5 17L22.6052 8H17.2302V6H22.6052H24.2927H25.1365V6C25.6025 6 25.9802 6.37776 25.9802 6.84375V6.84375V7.6875V9.375V14.75Z" fill="#F5E1FE"/>
+                        </g>
+                        <defs>
+                        <filter id="filter0_d_50_12" x="0" y="0" width="32" height="32" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                        <feOffset/>
+                        <feGaussianBlur stdDeviation="2"/>
+                        <feComposite in2="hardAlpha" operator="out"/>
+                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_50_12"/>
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_50_12" result="shape"/>
+                        </filter>
+                        </defs>
+                        </svg>)</span></li>
+                <li>xAI</li>
+            </ul>
+            <p>* Any other provider supported by LangChain.JS should also work with
+            <span class="link-with-icon"><a href="https://github.com/Galvanized-Pukeko/gaunt-sloth-assistant/blob/main/docs/CONFIGURATION.md#javascript-configuration" target="_blank">JS config</a>
+                <svg class="icon-in-text" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g filter="url(#filter0_d_50_12)">
+                    <path d="M22 24H8V10H15V8H7.28571C6.57563 8 6 8.57563 6 9.28571V24.7143L6.00628 24.8461C6.07228 25.4943 6.62013 26 7.28571 26H22.7143L22.8461 25.9937C23.451 25.9321 23.9321 25.451 23.9937 24.8461L24 24.7143V17H22V24Z" fill="#F5E1FE"/>
+                    <path d="M25.9802 14.75H24.0408V9.375L15 18.5L13.5 17L22.6052 8H17.2302V6H22.6052H24.2927H25.1365V6C25.6025 6 25.9802 6.37776 25.9802 6.84375V6.84375V7.6875V9.375V14.75Z" fill="#F5E1FE"/>
+                    </g>
+                    <defs>
+                    <filter id="filter0_d_50_12" x="0" y="0" width="32" height="32" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset/>
+                    <feGaussianBlur stdDeviation="2"/>
+                    <feComposite in2="hardAlpha" operator="out"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_50_12"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_50_12" result="shape"/>
+                    </filter>
+                    </defs>
+                    </svg>
+                    </span>.
+            </p>
+
             <h2>The promise of Gaunt Sloth:</h2>
             <ul class="features">
                 <li><strong>Minimum dependencies.</strong> Ideally, we aim to only have CommanderJS and some packages from LangChainJS and LangGraphJS.</li>
