@@ -156,6 +156,7 @@
                 display: inline-flex;
                 gap: 5px;
                 align-items: center;
+                font-size: inherit;
             }
             .icon-in-text {
                 width: 1.5rem;
@@ -165,6 +166,10 @@
                 font-weight: 300;
                 margin-top: 0;
                 text-transform: uppercase;
+                color:var(--color-subtitle);
+             }
+            .remark {
+                font-size: 95%;
                 color:var(--color-subtitle);
              }
             .oneliner {
@@ -595,7 +600,7 @@
                         </svg>)</span></li>
                 <li>xAI</li>
             </ul>
-            <p>* Any other provider supported by LangChain.JS should also work with
+            <p class="remark">* Any other provider supported by LangChain.JS should also work with
             <span class="link-with-icon"><a href="https://github.com/Galvanized-Pukeko/gaunt-sloth-assistant/blob/main/docs/CONFIGURATION.md#javascript-configuration" target="_blank">JS config</a>
                 <svg class="icon-in-text" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g filter="url(#filter0_d_50_12)">
