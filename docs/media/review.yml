@@ -15,14 +15,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use Node.js 24.x
+      - name: Use Node.js 22.x
         uses: actions/setup-node@v4
         with:
-          node-version: 24.x
+          node-version: 22.x
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm i gaunt-sloth-assistant@0.9.21 -g && gth --version
+        run: npm i gaunt-sloth-assistant@0.9.15 -g && gth --version
 
       - name: Extract issue number from PR title
         id: extract_issue
