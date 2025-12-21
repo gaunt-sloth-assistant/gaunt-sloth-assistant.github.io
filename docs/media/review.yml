@@ -1,4 +1,4 @@
-name: AI PR Review (Anthropic)
+name: AI PR Review
 
 # The pull_request_target is an important feature. It is running on files from `main`.
 on:
@@ -22,7 +22,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm i gaunt-sloth-assistant@1.0.3 -g && gth --version
+        run: npm i gaunt-sloth-assistant@1.0.4 -g && gth --version
 
       - name: Extract issue number from PR title
         id: extract_issue
@@ -38,13 +38,13 @@ jobs:
           if [ -z "${{ steps.extract_issue.outputs.issue_number }}" ]; then
             echo "ℹ️ **Tip:** To link this PR to an issue, start your PR title with the issue number followed by a space (e.g., '123 Fix authentication bug')" | tee review.md
             echo "" >> review.md
-            gth --nopipe -c ".github/workflows/.gsloth.config.json" pr ${{ github.event.pull_request.number }}
+            gth --nopipe -i review pr ${{ github.event.pull_request.number }}
           else
-            gth --nopipe -c ".github/workflows/.gsloth.config.json" pr ${{ github.event.pull_request.number }} ${{ steps.extract_issue.outputs.issue_number }}
+            gth --nopipe -i review pr ${{ github.event.pull_request.number }} ${{ steps.extract_issue.outputs.issue_number }}
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPEN_ROUTER_API_KEY: ${{ secrets.OPEN_ROUTER_API_KEY }}
 
       - name: Hide older AI review comments and post new one
         uses: actions/github-script@v8
