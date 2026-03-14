@@ -1,6 +1,8 @@
 name: AI PR Review
 
 # The pull_request_target is an important feature. It is running on files from `main`.
+# This is important to avoid changes which would execute code from the PR.
+# See postmortem here https://github.com/Galvanized-Pukeko/gaunt-sloth-assistant/discussions/304
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
@@ -9,11 +11,16 @@ on:
 
 jobs:
   ai-code-review:
+    environment: review
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
     if: ${{ !startsWith(github.head_ref, 'dependabot') }}
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Use Node.js 24.x
         uses: actions/setup-node@v6
@@ -26,8 +33,10 @@ jobs:
 
       - name: Extract issue number from PR title
         id: extract_issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          PR_TITLE="${{ github.event.pull_request.title }}"
+          PR_TITLE=$(gh pr view ${{ github.event.pull_request.number }} --repo ${{ github.repository }} --json title --jq '.title')
           ISSUE_NUMBER=$(echo "$PR_TITLE" | grep -oE '^[0-9]{2,5} ' | tr -d ' ' || true)
           echo "issue_number=$ISSUE_NUMBER" >> $GITHUB_OUTPUT
 
