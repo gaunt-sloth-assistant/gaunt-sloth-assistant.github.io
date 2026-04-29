@@ -6,9 +6,6 @@
   "author": "",
   "type": "commonjs",
   "main": "index.js",
-  "directories": {
-    "doc": "docs-0.9"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "serve"
